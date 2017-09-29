@@ -1,15 +1,15 @@
 <template>
-    <div id="usager">
+    <div id="livre">
       <md-whiteframe md-elevation="24">
       <md-layout md-align="center" md-gutter>
         <md-layout md-flex="35">
           <md-input-container>
-            <label>Nom</label>
-            <md-input v-model="name"></md-input>
+            <label>Titre</label>
+            <md-input v-model="titre"></md-input>
           </md-input-container>
           <md-input-container>
-            <label>Prénom</label>
-            <md-input v-model="surname"></md-input>
+            <label>Auteur</label>
+            <md-input v-model="auteur"></md-input>
           </md-input-container>
           <md-input-container>
             <label>Email</label>

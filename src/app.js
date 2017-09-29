@@ -6,7 +6,7 @@ import VueRessource from 'Vue-resource'
 import App from './components/App.vue'
 import Home from './components/Home.vue'
 import User from './components/User.vue'
-import Lodash from 'lodash'
+import Book from './components/Book.vue'
 
 
 import '../node_modules/vue-material/dist/vue-material.css'
@@ -15,10 +15,10 @@ Vue.use(VueMaterial)
 Vue.use(VueRouter)
 Vue.use(VueRessource)
 Vue.use(axios)
-Vue.use(Lodash)
 const routes =[
-  {path: '/home', component :Home, name :'home'},
-  {path: '/user',component: User,name: 'user'},
+  {path: '/home', component :Home, name: 'home'},
+  {path: '/user', component: User, name: 'user'},
+  {path: '/book', component: Book, name: 'book'},
   {path: '*',redirect:'/home'},
 
 ]
