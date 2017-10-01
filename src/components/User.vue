@@ -25,6 +25,7 @@
     </div>
 </template>
 <script>
+import axios from 'axios'
   export default{
     data(){
       return {
@@ -35,21 +36,27 @@
     },
     methods: {
    registerUser(){
-     var json='{"nom":"' + this.name + '","prenom":"' + this.surname + '","mail":"' + this.mail + '"}'
-     axios.post('/user',json)
+     this.$http.post('http://192.168.99.100:8080/user',{params: {data: {
+       nom:this.name,
+       surname:this.surname,
+       mail:this.mail
+     }}, headers: {'Content-Type': 'application/json','crossDomain': 'true'}})
    .then(function (response) {
+     alert("insterion faite !")
      console.log(response);
    })
    .catch(function (error) {
-     console.log(error);
+   alert("erreur, veuillez recommencer...")
+     console.log("error",error);
    })
-     //add user
    },
    deleteUser(){
      //delete user.
+     alert("not implemented yet")
    },
    updateUser(){
      //delete user.
+     alert("not implemented yet")
    },
  },
 }

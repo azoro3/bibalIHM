@@ -6,7 +6,11 @@ import VueRessource from 'Vue-resource'
 import App from './components/App.vue'
 import Home from './components/Home.vue'
 import User from './components/User.vue'
-import Book from './components/Book.vue'
+import Oeuvre from './components/Oeuvre.vue'
+import Exemplaire from './components/Exemplaire.vue'
+import Reservation from './components/Reservation.vue'
+import Emprunt from './components/Emprunt.vue'
+import Rendu from './components/Rendu.vue'
 
 
 import '../node_modules/vue-material/dist/vue-material.css'
@@ -18,7 +22,11 @@ Vue.use(axios)
 const routes =[
   {path: '/home', component :Home, name: 'home'},
   {path: '/user', component: User, name: 'user'},
-  {path: '/book', component: Book, name: 'book'},
+  {path: '/oeuvre', component: Oeuvre, name: 'oeuvre'},
+  {path: '/exemplaire', component: Exemplaire, name: 'exemplaire'},
+  {path: '/reservation', component: Reservation, name: 'reservation'},
+  {path: '/emprunt', component: Emprunt, name: 'emprunt'},
+  {path: '/rendu', component: Rendu, name: 'rendu'},
   {path: '*',redirect:'/home'},
 
 ]
