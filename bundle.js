@@ -14121,15 +14121,13 @@ exports.push([module.i, "", ""]);
 //
 //
 //
-//
-//
 
 /***/ }),
 /* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"home"}},[_c('md-layout',{attrs:{"md-align":"center","md-gutter":"55","md-row":""}},[_c('md-layout',{attrs:{"md-flex":"55"}},[_c('router-link',{staticClass:"md-raised md-primary",attrs:{"tag":"md-button","to":"User"}},[_vm._v("User management")]),_vm._v(" "),_c('router-link',{staticClass:"md-raised md-primary",attrs:{"tag":"md-button","to":"Book"}},[_vm._v("Book management")]),_vm._v(" "),_c('router-link',{staticClass:"md-raised md-primary",attrs:{"tag":"md-button","to":""}},[_vm._v("Loan management")]),_vm._v(" "),_c('router-link',{staticClass:"md-raised md-primary",attrs:{"tag":"md-button","to":""}},[_vm._v("Oeuvre management")])],1)],1)],1)}
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"home"}},[_c('md-layout',{attrs:{"md-align":"center","md-gutter":"55","md-row":""}},[_c('md-layout',{attrs:{"md-flex":"55"}},[_c('router-link',{staticClass:"md-raised md-primary",attrs:{"tag":"md-button","to":"User"}},[_vm._v("User management")]),_vm._v(" "),_c('router-link',{staticClass:"md-raised md-primary",attrs:{"tag":"md-button","to":"Book"}},[_vm._v("Book management")])],1)],1)],1)}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
@@ -14223,6 +14221,7 @@ exports.push([module.i, "", ""]);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   data() {
@@ -14244,6 +14243,9 @@ exports.push([module.i, "", ""]);
     },
     deleteUser() {
       //delete user.
+    },
+    updateUser() {
+      //delete user.
     }
   }
 });
@@ -14253,7 +14255,7 @@ exports.push([module.i, "", ""]);
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"usager"}},[_c('md-whiteframe',{attrs:{"md-elevation":"24"}},[_c('md-layout',{attrs:{"md-align":"center","md-gutter":""}},[_c('md-layout',{attrs:{"md-flex":"35"}},[_c('md-input-container',[_c('label',[_vm._v("Nom")]),_vm._v(" "),_c('md-input',{model:{value:(_vm.name),callback:function ($$v) {_vm.name=$$v},expression:"name"}})],1),_vm._v(" "),_c('md-input-container',[_c('label',[_vm._v("Prénom")]),_vm._v(" "),_c('md-input',{model:{value:(_vm.surname),callback:function ($$v) {_vm.surname=$$v},expression:"surname"}})],1),_vm._v(" "),_c('md-input-container',[_c('label',[_vm._v("Email")]),_vm._v(" "),_c('md-input',{model:{value:(_vm.mail),callback:function ($$v) {_vm.mail=$$v},expression:"mail"}})],1),_vm._v(" "),_c('md-button',{staticClass:"md-raised md-primary",on:{"click":_vm.registerUser}},[_vm._v("Enregistrer")]),_vm._v(" "),_c('md-button',{staticClass:"md-raised md-primary",on:{"click":_vm.deleteUser}},[_vm._v("Supprimer")]),_vm._v(" "),_c('router-link',{staticClass:"md-raised md-primary",attrs:{"tag":"md-button","to":"Home"}},[_vm._v("Home")])],1)],1),_vm._v(" "),_c('md-whiteframe')],1)],1)}
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"usager"}},[_c('md-whiteframe',{attrs:{"md-elevation":"24"}},[_c('md-layout',{attrs:{"md-align":"center","md-gutter":""}},[_c('md-layout',{attrs:{"md-flex":"35"}},[_c('md-input-container',[_c('label',[_vm._v("Nom")]),_vm._v(" "),_c('md-input',{model:{value:(_vm.name),callback:function ($$v) {_vm.name=$$v},expression:"name"}})],1),_vm._v(" "),_c('md-input-container',[_c('label',[_vm._v("Prénom")]),_vm._v(" "),_c('md-input',{model:{value:(_vm.surname),callback:function ($$v) {_vm.surname=$$v},expression:"surname"}})],1),_vm._v(" "),_c('md-input-container',[_c('label',[_vm._v("Email")]),_vm._v(" "),_c('md-input',{model:{value:(_vm.mail),callback:function ($$v) {_vm.mail=$$v},expression:"mail"}})],1),_vm._v(" "),_c('md-button',{staticClass:"md-raised md-primary",on:{"click":_vm.registerUser}},[_vm._v("Enregistrer")]),_vm._v(" "),_c('md-button',{staticClass:"md-raised md-primary",on:{"click":_vm.deleteUser}},[_vm._v("Supprimer")]),_vm._v(" "),_c('md-button',{staticClass:"md-raised md-primary",on:{"click":_vm.updateUser}},[_vm._v("Modifier")]),_vm._v(" "),_c('router-link',{staticClass:"md-raised md-primary",attrs:{"tag":"md-button","to":"Home"}},[_vm._v("Home")])],1)],1),_vm._v(" "),_c('md-whiteframe')],1)],1)}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
@@ -14263,25 +14265,20 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Book_vue__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_dd02b5c4_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_Book_vue__ = __webpack_require__(61);
-function injectStyle (ssrContext) {
-  __webpack_require__(58)
-}
 var normalizeComponent = __webpack_require__(2)
 /* script */
-
+var __vue_script__ = null
 /* template */
-
+var __vue_template__ = null
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Book_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_dd02b5c4_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_Book_vue__["a" /* default */],
+  __vue_script__,
+  __vue_template__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
@@ -14788,98 +14785,6 @@ module.exports = function (css) {
 	return fixedCss;
 };
 
-
-/***/ }),
-/* 58 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(59);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("296bb679", content, true);
-
-/***/ }),
-/* 59 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/***/ }),
-/* 60 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  data() {
-    return {
-      name: '',
-      surname: '',
-      mail: ''
-    };
-  },
-  methods: {
-    registerUser() {
-      var json = '{"nom":"' + this.name + '","prenom":"' + this.surname + '","mail":"' + this.mail + '"}';
-      axios.post('/user', json).then(function (response) {
-        console.log(response);
-      }).catch(function (error) {
-        console.log(error);
-      });
-      //add user
-    },
-    deleteUser() {
-      //delete user.
-    }
-  }
-});
-
-/***/ }),
-/* 61 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"livre"}},[_c('md-whiteframe',{attrs:{"md-elevation":"24"}},[_c('md-layout',{attrs:{"md-align":"center","md-gutter":""}},[_c('md-layout',{attrs:{"md-flex":"35"}},[_c('md-input-container',[_c('label',[_vm._v("Titre")]),_vm._v(" "),_c('md-input',{model:{value:(_vm.titre),callback:function ($$v) {_vm.titre=$$v},expression:"titre"}})],1),_vm._v(" "),_c('md-input-container',[_c('label',[_vm._v("Auteur")]),_vm._v(" "),_c('md-input',{model:{value:(_vm.auteur),callback:function ($$v) {_vm.auteur=$$v},expression:"auteur"}})],1),_vm._v(" "),_c('md-input-container',[_c('label',[_vm._v("Email")]),_vm._v(" "),_c('md-input',{model:{value:(_vm.mail),callback:function ($$v) {_vm.mail=$$v},expression:"mail"}})],1),_vm._v(" "),_c('md-button',{staticClass:"md-raised md-primary",on:{"click":_vm.registerUser}},[_vm._v("Enregistrer")]),_vm._v(" "),_c('md-button',{staticClass:"md-raised md-primary",on:{"click":_vm.deleteUser}},[_vm._v("Supprimer")]),_vm._v(" "),_c('router-link',{staticClass:"md-raised md-primary",attrs:{"tag":"md-button","to":"Home"}},[_vm._v("Home")])],1)],1),_vm._v(" "),_c('md-whiteframe')],1)],1)}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
 
 /***/ })
 /******/ ]);
