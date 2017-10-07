@@ -21,7 +21,7 @@
           <router-link tag="md-button" to="Home" class="md-raised md-primary">Home</router-link>
         </md-layout>
       </md-layout>
-    <md-whiteframe>
+    </md-whiteframe>
     </div>
 </template>
 <script>
@@ -31,28 +31,25 @@ import axios from 'axios'
       return {
         name :'',
         surname:'',
-        mail:''
+        mail:'',
+        test:{},
       }
     },
     methods: {
    registerUser(){
-     this.$http.post('http://192.168.99.100:8080/user',{params: {data: {
-       nom:this.name,
-       surname:this.surname,
-       mail:this.mail
-     }}, headers: {'Content-Type': 'application/json','crossDomain': 'true'}})
+     this.test= JSON.stringify({
+       "nom":this.name,
+       "prenom":this.surname,
+       "mail":this.mail
+     })
+     axios.post('http://localhost:8080/user',this.test)
    .then(function (response) {
-     alert("insterion faite !")
+     alert("insertion faite !")
      console.log(response);
    })
    .catch(function (error) {
-   alert("erreur, veuillez recommencer...")
-     console.log("error",error);
+   alert("erreur: "+ error +" veuillez recommencer...")
    })
-   },
-   deleteUser(){
-     //delete user.
-     alert("not implemented yet")
    },
    updateUser(){
      //delete user.
