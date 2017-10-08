@@ -51,23 +51,37 @@ import axios from 'axios'
       }
     },
     methods: {
-   registerBook(){
-     axios.post("http://192.168.99.100:8080/book",{
-       titre:this.titre,
-       synopsis:this.synopsis,
-       auteur:this.auteur
+      registerBook(){
+        this.test= JSON.stringify({
+          "nom":this.titre,
+          "synopsis":this.synopsis  ,
+          "auteur":this.auteur
+        })
+        axios.post('http://localhost:8080/oeuvre',this.test)
+      .then(function (response) {
+        alert("insertion faite !")
+        console.log(response);
+      })
+      .catch(function (error) {
+      alert("erreur: "+ error +" veuillez recommencer...")
+      })
+      },
+      
+   registerMagazine(){
+     this.test= JSON.stringify({
+       "nom":this.titre,
+       "synopsis":this.synopsis  ,
+       "date":this.date
      })
+     axios.post('http://localhost:8080/oeuvre',this.test)
    .then(function (response) {
+     alert("insertion faite !")
      console.log(response);
    })
    .catch(function (error) {
-     console.log("error",error);
+   alert("erreur: "+ error +" veuillez recommencer...")
    })
-   },
-   registerMagazine(){
-     //Enregistrer magazine.
-     alert("not implemented yet")
-   },
+ },
  },
 }
 </script>

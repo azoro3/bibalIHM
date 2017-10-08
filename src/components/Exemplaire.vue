@@ -4,6 +4,10 @@
       <md-layout md-align="center" md-gutter>
         <md-layout md-flex="35">
           <md-input-container>
+            <label>Nom de l'oeuvre</label>
+            <md-autocomplete v-model="nomOeuvre" :fetch="fetchFunction"></md-autocomplete>
+          </md-input-container>
+          <md-input-container>
             <label>Date d'achat</label>
             <md-input v-model="dateA"></md-input>
           </md-input-container>
@@ -40,6 +44,11 @@ import axios from 'axios'
    modifierExemplaire(){
      //modifier un exemplaire existatnt
      alert("not implemented yet")
+   },
+   fetchFunction(){
+     axios.get('http://localhost:8080/oeuvre').then(function(response){
+       console.log(resopnse);
+     })
    },
  },
 }

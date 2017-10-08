@@ -16,8 +16,6 @@
             <md-input v-model="mail"></md-input>
           </md-input-container>
           <md-button v-on:click="registerUser" class="md-raised md-primary">Enregistrer</md-button>
-          <md-button v-on:click="deleteUser" class="md-raised md-primary">Supprimer</md-button>
-          <md-button v-on:click="updateUser" class="md-raised md-primary">Modifier</md-button>
           <router-link tag="md-button" to="Home" class="md-raised md-primary">Home</router-link>
         </md-layout>
       </md-layout>
@@ -50,10 +48,6 @@ import axios from 'axios'
    .catch(function (error) {
    alert("erreur: "+ error +" veuillez recommencer...")
    })
-   },
-   updateUser(){
-     //delete user.
-     alert("not implemented yet")
    },
  },
 }
