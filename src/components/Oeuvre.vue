@@ -18,8 +18,11 @@
         <md-layout md-align="center" md-gutter>
           <md-layout md-flex="25">
             <md-input-container>
-              <label>Auteur</label>
-              <md-input v-model="auteur"></md-input>
+              <md-select v-model="selectedItem">
+                <md-option v-for="item in items" :key="item.id" :value="item">
+                  {{ item.nom }} id : {{item.id}}
+                </md-option>
+              </md-select>
             </md-input-container>
             <md-button v-on:click="registerBook" class="md-raised md-primary">Enregistrer livre</md-button>
             <router-link tag="md-button" to="Home" class="md-raised md-primary">Home</router-link>
@@ -44,30 +47,28 @@ import axios from 'axios'
     data(){
       return {
         titre :'',
-        synopsis:'',
-        mail:'',
-        auteur:'',
-        date:''
+        synopsis:'',        
+        items:[],
+        selectedItem:[]
       }
     },
     methods: {
       registerBook(){
         this.test= JSON.stringify({
           "nom":this.titre,
-          "synopsis":this.synopsis  ,
-          "auteur":this.auteur
+          "synopsis":this.synopsis,
+          "auteur":this.selectedItem.id
         })
         axios.post('http://localhost:8080/oeuvre',this.test)
       .then(function (response) {
         alert("insertion faite !")
-        console.log(response);
       })
       .catch(function (error) {
       alert("erreur: "+ error +" veuillez recommencer...")
       })
       },
-      
-   registerMagazine(){
+
+     registerMagazine(){
      this.test= JSON.stringify({
        "nom":this.titre,
        "synopsis":this.synopsis  ,
@@ -82,7 +83,24 @@ import axios from 'axios'
    alert("erreur: "+ error +" veuillez recommencer...")
    })
  },
+ affichage(){
+   self=this;
+   axios.get('http://localhost:8080/oeuvre/auteur/')
+    .then(function (response)
+      {
+        self.items=response.data._embedded.auteurs
+      })
+    .catch(function (error)
+      {
+        console.log("erreur: "+ error +" veuillez recommencer...")
+      })
+
+},
  },
+mounted() {
+  this.affichage()
+
+}
 }
 </script>
 <style>

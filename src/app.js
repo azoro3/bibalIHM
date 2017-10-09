@@ -15,6 +15,7 @@ import Reservation from './components/Reservation.vue'
 import Emprunt from './components/Emprunt.vue'
 import Rendu from './components/Rendu.vue'
 import Login from './components/Login.vue'
+import Author from './components/Author.vue'
 
 
 import '../node_modules/vue-material/dist/vue-material.css'
@@ -35,6 +36,7 @@ const routes =[
   {path: '/emprunt', component: Emprunt, name: 'emprunt'},
   {path: '/rendu', component: Rendu, name: 'rendu'},
   {path: '/login', component: Login, name: 'login'},
+  {path: '/author', component: Author, name: 'author'},
   {path: '*',redirect:'/home'},
 
 ]
