@@ -15390,7 +15390,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -15435,6 +15435,13 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -15442,14 +15449,25 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
     return {
       dateA: '',
       etat: '',
-      items: [],
+      items1: [],
+      items2: [],
       selectedItem: []
     };
   },
   methods: {
     registerExemplaire() {
-      //enrgistrer un nouvel exemplaire
-      alert("not implemented yet");
+      this.test = JSON.stringify({
+        "date_achat": this.dateA,
+        "etat": this.etat,
+        "oeuvre_id": this.selectedItem.id
+      });
+      console.log;
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/oeuvre/' + this.selectedItem.id + "/exemplaire", this.test).then(function (response) {
+        alert("insertion faite !");
+        console.log(response);
+      }).catch(function (error) {
+        alert("erreur: " + error + " veuillez recommencer...");
+      });
     },
     modifierExemplaire() {
       //modifier un exemplaire existant
@@ -15458,10 +15476,11 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
     affichage() {
       self = this;
       __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('http://localhost:8080/oeuvre/').then(function (response) {
-        self.items[0] = response.data._embedded.magazines;
-        self.items[1] = response.data._embedded.livres;
+        self.items1 = response.data._embedded.magazines;
+        self.items2 = response.data._embedded.livres;
         //self.items+="\n" +response.data._embedded.livres
-        console.log(self.items);
+        console.log(self.items1);
+        console.log(self.items2);
       }).catch(function (error) {
         console.log("erreur: " + error + " veuillez recommencer...");
       });
@@ -15511,17 +15530,37 @@ var render = function() {
                             expression: "selectedItem"
                           }
                         },
-                        _vm._l(_vm.items, function(item) {
+                        _vm._l(_vm.items1, function(item) {
                           return _c(
                             "md-option",
                             { key: item.id, attrs: { value: item } },
                             [
                               _vm._v(
-                                "\n            " +
+                                "\n              " +
                                   _vm._s(item.nom) +
-                                  "\n          "
+                                  "\n            "
                               )
                             ]
+                          )
+                        })
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "md-select",
+                        {
+                          model: {
+                            value: _vm.selectedItem,
+                            callback: function($$v) {
+                              _vm.selectedItem = $$v
+                            },
+                            expression: "selectedItem"
+                          }
+                        },
+                        _vm._l(_vm.items2, function(item) {
+                          return _c(
+                            "md-option",
+                            { key: item.id, attrs: { value: item } },
+                            [_vm._v("\n    " + _vm._s(item.nom) + "\n  ")]
                           )
                         })
                       )
@@ -15567,15 +15606,15 @@ var render = function() {
                           }
                         },
                         [
-                          _c("md-option", { attrs: { value: "NEUF" } }, [
+                          _c("md-option", { attrs: { value: "1" } }, [
                             _vm._v("Neuf")
                           ]),
                           _vm._v(" "),
-                          _c("md-option", { attrs: { value: "ABIME" } }, [
+                          _c("md-option", { attrs: { value: "2" } }, [
                             _vm._v("Abimé")
                           ]),
                           _vm._v(" "),
-                          _c("md-option", { attrs: { value: "JETER" } }, [
+                          _c("md-option", { attrs: { value: "3" } }, [
                             _vm._v("A jeter")
                           ])
                         ],
