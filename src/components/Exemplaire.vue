@@ -4,9 +4,13 @@
       <md-layout md-align="center" md-gutter>
         <md-layout md-flex="35">
           <md-input-container>
-            <label>Nom de l'oeuvre</label>
-            <md-autocomplete v-model="nomOeuvre" :fetch="fetchFunction"></md-autocomplete>
+            <md-select v-model="selectedItem">
+              <md-option v-for="item in items" :key="item.id" :value="item">
+                {{ item.nom }}
+              </md-option>
+            </md-select>
           </md-input-container>
+
           <md-input-container>
             <label>Date d'achat</label>
             <md-input v-model="dateA"></md-input>
@@ -34,6 +38,8 @@ import axios from 'axios'
       return {
         dateA: '',
         etat: '',
+        items: [],
+        selectedItem: []
       }
     },
     methods: {
@@ -42,16 +48,30 @@ import axios from 'axios'
      alert("not implemented yet")
    },
    modifierExemplaire(){
-     //modifier un exemplaire existatnt
+     //modifier un exemplaire existant
      alert("not implemented yet")
    },
-   fetchFunction(){
-     axios.get('http://localhost:8080/oeuvre').then(function(response){
-       console.log(resopnse);
-     })
+   affichage() {
+     self = this;
+     axios.get('http://localhost:8080/oeuvre/')
+       .then(function(response)
+       {
+         self.items[0] = response.data._embedded.magazines
+         self.items[1] = response.data._embedded.livres
+         //self.items+="\n" +response.data._embedded.livres
+         console.log(self.items)
+       })
+       .catch(function(error) {
+         console.log("erreur: " + error + " veuillez recommencer...")
+       })
+
    },
- },
-}
+    },
+    mounted() {
+      this.affichage()
+
+    } 
+ }
 </script>
 <style>
 

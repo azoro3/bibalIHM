@@ -14984,7 +14984,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -15046,6 +15046,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
     return {
       titre: '',
       synopsis: '',
+      date: '',
       items: [],
       selectedItem: []
     };
@@ -15055,12 +15056,14 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
       this.test = JSON.stringify({
         "nom": this.titre,
         "synopsis": this.synopsis,
-        "auteur": this.selectedItem.id
+        "auteur_id": { "id": this.selectedItem.id, "date_de_naiss": null, "nom": null, "pernom": null }
       });
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/oeuvre', this.test).then(function (response) {
+      console.log(this.test);
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/oeuvre/livre/', this.test).then(function (response) {
         alert("insertion faite !");
       }).catch(function (error) {
-        alert("erreur: " + error + " veuillez recommencer...");
+        alert("erreur, veuillez recommencer...");
+        console.log(error);
       });
     },
 
@@ -15070,7 +15073,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
         "synopsis": this.synopsis,
         "date": this.date
       });
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/oeuvre', this.test).then(function (response) {
+      console.log(this.date);
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/oeuvre/magazine/', this.test).then(function (response) {
         alert("insertion faite !");
         console.log(response);
       }).catch(function (error) {
@@ -15195,8 +15199,8 @@ var render = function() {
                               _vm._v(
                                 "\n              " +
                                   _vm._s(item.nom) +
-                                  " id : " +
-                                  _vm._s(item.id) +
+                                  " " +
+                                  _vm._s(item.prenom) +
                                   "\n            "
                               )
                             ]
@@ -15386,7 +15390,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -15427,13 +15431,19 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   data() {
     return {
       dateA: '',
-      etat: ''
+      etat: '',
+      items: [],
+      selectedItem: []
     };
   },
   methods: {
@@ -15442,14 +15452,23 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
       alert("not implemented yet");
     },
     modifierExemplaire() {
-      //modifier un exemplaire existatnt
+      //modifier un exemplaire existant
       alert("not implemented yet");
     },
-    fetchFunction() {
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('http://localhost:8080/oeuvre').then(function (response) {
-        console.log(resopnse);
+    affichage() {
+      self = this;
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('http://localhost:8080/oeuvre/').then(function (response) {
+        self.items[0] = response.data._embedded.magazines;
+        self.items[1] = response.data._embedded.livres;
+        //self.items+="\n" +response.data._embedded.livres
+        console.log(self.items);
+      }).catch(function (error) {
+        console.log("erreur: " + error + " veuillez recommencer...");
       });
     }
+  },
+  mounted() {
+    this.affichage();
   }
 });
 
@@ -15481,18 +15500,31 @@ var render = function() {
                   _c(
                     "md-input-container",
                     [
-                      _c("label", [_vm._v("Nom de l'oeuvre")]),
-                      _vm._v(" "),
-                      _c("md-autocomplete", {
-                        attrs: { fetch: _vm.fetchFunction },
-                        model: {
-                          value: _vm.nomOeuvre,
-                          callback: function($$v) {
-                            _vm.nomOeuvre = $$v
-                          },
-                          expression: "nomOeuvre"
-                        }
-                      })
+                      _c(
+                        "md-select",
+                        {
+                          model: {
+                            value: _vm.selectedItem,
+                            callback: function($$v) {
+                              _vm.selectedItem = $$v
+                            },
+                            expression: "selectedItem"
+                          }
+                        },
+                        _vm._l(_vm.items, function(item) {
+                          return _c(
+                            "md-option",
+                            { key: item.id, attrs: { value: item } },
+                            [
+                              _vm._v(
+                                "\n            " +
+                                  _vm._s(item.nom) +
+                                  "\n          "
+                              )
+                            ]
+                          )
+                        })
+                      )
                     ],
                     1
                   ),

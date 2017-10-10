@@ -20,7 +20,7 @@
             <md-input-container>
               <md-select v-model="selectedItem">
                 <md-option v-for="item in items" :key="item.id" :value="item">
-                  {{ item.nom }} id : {{item.id}}
+                  {{ item.nom }} {{item.prenom}}
                 </md-option>
               </md-select>
             </md-input-container>
@@ -47,9 +47,10 @@ import axios from 'axios'
     data(){
       return {
         titre :'',
-        synopsis:'',        
-        items:[],
-        selectedItem:[]
+        synopsis:'',
+        date:'',    
+        items: [],
+        selectedItem: []
       }
     },
     methods: {
@@ -57,24 +58,27 @@ import axios from 'axios'
         this.test= JSON.stringify({
           "nom":this.titre,
           "synopsis":this.synopsis,
-          "auteur":this.selectedItem.id
+          "auteur_id":{"id": this.selectedItem.id,"date_de_naiss":null,"nom":null,"pernom":null}
         })
-        axios.post('http://localhost:8080/oeuvre',this.test)
+        console.log(this.test)
+        axios.post('http://localhost:8080/oeuvre/livre/',this.test)
       .then(function (response) {
         alert("insertion faite !")
       })
       .catch(function (error) {
-      alert("erreur: "+ error +" veuillez recommencer...")
+      alert("erreur, veuillez recommencer...")
+      console.log(error)
       })
       },
 
      registerMagazine(){
      this.test= JSON.stringify({
        "nom":this.titre,
-       "synopsis":this.synopsis  ,
+       "synopsis":this.synopsis,
        "date":this.date
      })
-     axios.post('http://localhost:8080/oeuvre',this.test)
+     console.log(this.date)
+     axios.post('http://localhost:8080/oeuvre/magazine/',this.test)
    .then(function (response) {
      alert("insertion faite !")
      console.log(response);
