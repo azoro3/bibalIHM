@@ -9,35 +9,25 @@
                 {{ item.nom }}
               </md-option>
             </md-select>
-              <md-select v-model="selectedItem">
+            <md-select v-model="selectedItem">
               <md-option v-for="item in items2" :key="item.id" :value="item">
                 {{ item.nom }}
               </md-option>
             </md-select>
           </md-input-container>
-
           <md-input-container>
             <label>Date de début de réservation</label>
             <md-input v-model="dateD"></md-input>
           </md-input-container>
-          
           <md-input-container>
             <label>Date de fin de réservation</label>
             <md-input v-model="dateF"></md-input>
           </md-input-container>
-
-          
           <md-input-container>
-            <label>Usager</label>
-            <md-autocomplete v-model="userValue" :list="users" :filter-list="colorFilter"print-attribute="nom" :fetch="fetchFunction"></md-autocomplete>
-          </md-input-container>
-
-
-          <md-input-container>
-            <label for="etat">Etat du livre</label>
-            <md-select name="etat" id="etat" v-model="etat">
-              <md-option value="EN_COURS">En cours</md-option>
-              <md-option value="ANNULE">Annulé</md-option>
+            <md-select v-model="user">
+              <md-option v-for="item in items3" :key="item.id" :value="item">
+                {{ item.nom }}
+              </md-option>
             </md-select>
           </md-input-container>
           <md-button v-on:click="enregistrerReservation" class="md-raised md-primary">Enregistrer</md-button>
@@ -54,12 +44,13 @@ export default {
   data() {
     return {
       dateA: '',
-      etat: '',
+      etat: 'EN_COURS',
       items1: [],
       items2: [],
+      items3: [],
       selectedItem: [],
       userValue: [],
-      users: []
+      user: []
     }
   },
   methods: {
@@ -68,7 +59,7 @@ export default {
         "date_debut": this.dateD,
         "date_fin": this.dateF,
         "oeuvre_id": this.selectedItem.id,
-        "usager_id": this.userValue.id,
+        "usager_id": this.user.id,
         "reservations": this.etat
       })
       console.log(this.test)
@@ -91,24 +82,28 @@ export default {
         .then(function(response) {
           self.items1 = response.data._embedded.magazines
           self.items2 = response.data._embedded.livres
-          //self.items+="\n" +response.data._embedded.livres
-          console.log(self.items1)
-          console.log(self.items2)
+        })
+        .catch(function(error) {
+          console.log("erreur: " + error + " veuillez recommencer...")
+        })
+      self = this;
+      axios.get('http://localhost:8080/user/')
+        .then(function(response) {
+          self.items3 = response.data._embedded.usagers
         })
         .catch(function(error) {
           console.log("erreur: " + error + " veuillez recommencer...")
         })
 
     },
-    fetchFunction(){
-      self=this
+    fetchFunction() {
+      self = this
       axios.get('http://localhost:8080/user/')
-      .then(function(response){
-        self.users=response.data._embedded.usagers
-        console.log(self.users)
-      }).catch(function(error){
-        console.log(error)
-      })
+        .then(function(response) {
+          self.users = response.data._embedded.usagers
+        }).catch(function(error) {
+          console.log(error)
+        })
     }
   },
   mounted() {

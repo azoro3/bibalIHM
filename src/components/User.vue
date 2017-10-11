@@ -15,8 +15,8 @@
             <label>Email</label>
             <md-input v-model="mail"></md-input>
           </md-input-container>
-          <md-button v-on:click="registerUser" class="md-raised md-primary">Enregistrer</md-button>
-          <router-link tag="md-button" to="Home" class="md-raised md-primary">Home</router-link>
+          <md-button v-on:click="registerUser" class="md-raised md-primary"><i class="material-icons">person_add</i></md-button>
+          <router-link tag="md-button" to="Home" class="md-raised md-primary"><i class="material-icons">home</i></router-link>
         </md-layout>
       </md-layout>
     </md-whiteframe>
