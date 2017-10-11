@@ -15462,7 +15462,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
         "oeuvre_id": this.selectedItem.id
       });
       console.log;
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/oeuvre/' + this.selectedItem.id + "/exemplaire", this.test).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/oeuvre/' + this.selectedItem.id + "/exemplaire/", this.test).then(function (response) {
         alert("insertion faite !");
         console.log(response);
       }).catch(function (error) {
@@ -15762,7 +15762,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -15809,25 +15809,80 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   data() {
     return {
-      dateR: '',
+      dateA: '',
       etat: '',
-      nom: '',
-      prenom: '',
-      noExemplaire: ''
+      items1: [],
+      items2: [],
+      selectedItem: [],
+      userValue: [],
+      users: []
     };
   },
   methods: {
-    reserverExemplaire() {
-      alert("not implemented yet");
+    enregistrerReservation() {
+      this.test = JSON.stringify({
+        "date_debut": this.dateD,
+        "date_fin": this.dateF,
+        "oeuvre_id": this.selectedItem.id,
+        "usager_id": this.userValue.id,
+        "reservations": this.etat
+      });
+      console.log(this.test);
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/oeuvre/' + this.selectedItem.id + "/exemplaire/", this.test).then(function (response) {
+        alert("insertion faite !");
+        console.log(response);
+      }).catch(function (error) {
+        alert("erreur: " + error + " veuillez recommencer...");
+      });
     },
     modifierExemplaire() {
+      //modifier un exemplaire existant
       alert("not implemented yet");
+    },
+    affichage() {
+      self = this;
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('http://localhost:8080/oeuvre/').then(function (response) {
+        self.items1 = response.data._embedded.magazines;
+        self.items2 = response.data._embedded.livres;
+        //self.items+="\n" +response.data._embedded.livres
+        console.log(self.items1);
+        console.log(self.items2);
+      }).catch(function (error) {
+        console.log("erreur: " + error + " veuillez recommencer...");
+      });
+    },
+    fetchFunction() {
+      self = this;
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('http://localhost:8080/user/').then(function (response) {
+        self.users = response.data._embedded.usagers;
+        console.log(self.users);
+      }).catch(function (error) {
+        console.log(error);
+      });
     }
+  },
+  mounted() {
+    this.affichage();
   }
 });
 
@@ -15842,7 +15897,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { attrs: { id: "reservation" } },
+    { attrs: { id: "exemplaire" } },
     [
       _c(
         "md-whiteframe",
@@ -15859,15 +15914,115 @@ var render = function() {
                   _c(
                     "md-input-container",
                     [
-                      _c("label", [_vm._v("Date réservation")]),
+                      _c(
+                        "md-select",
+                        {
+                          model: {
+                            value: _vm.selectedItem,
+                            callback: function($$v) {
+                              _vm.selectedItem = $$v
+                            },
+                            expression: "selectedItem"
+                          }
+                        },
+                        _vm._l(_vm.items1, function(item) {
+                          return _c(
+                            "md-option",
+                            { key: item.id, attrs: { value: item } },
+                            [
+                              _vm._v(
+                                "\n              " +
+                                  _vm._s(item.nom) +
+                                  "\n            "
+                              )
+                            ]
+                          )
+                        })
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "md-select",
+                        {
+                          model: {
+                            value: _vm.selectedItem,
+                            callback: function($$v) {
+                              _vm.selectedItem = $$v
+                            },
+                            expression: "selectedItem"
+                          }
+                        },
+                        _vm._l(_vm.items2, function(item) {
+                          return _c(
+                            "md-option",
+                            { key: item.id, attrs: { value: item } },
+                            [
+                              _vm._v(
+                                "\n              " +
+                                  _vm._s(item.nom) +
+                                  "\n            "
+                              )
+                            ]
+                          )
+                        })
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "md-input-container",
+                    [
+                      _c("label", [_vm._v("Date de début de réservation")]),
                       _vm._v(" "),
                       _c("md-input", {
                         model: {
-                          value: _vm.dateR,
+                          value: _vm.dateD,
                           callback: function($$v) {
-                            _vm.dateR = $$v
+                            _vm.dateD = $$v
                           },
-                          expression: "dateR"
+                          expression: "dateD"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "md-input-container",
+                    [
+                      _c("label", [_vm._v("Date de fin de réservation")]),
+                      _vm._v(" "),
+                      _c("md-input", {
+                        model: {
+                          value: _vm.dateF,
+                          callback: function($$v) {
+                            _vm.dateF = $$v
+                          },
+                          expression: "dateF"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "md-input-container",
+                    [
+                      _c("label", [_vm._v("Usager")]),
+                      _vm._v(" "),
+                      _c("md-autocomplete", {
+                        attrs: {
+                          list: _vm.users,
+                          "filter-list": _vm.colorFilter,
+                          "print-attribute": "nom",
+                          fetch: _vm.fetchFunction
+                        },
+                        model: {
+                          value: _vm.userValue,
+                          callback: function($$v) {
+                            _vm.userValue = $$v
+                          },
+                          expression: "userValue"
                         }
                       })
                     ],
@@ -15878,7 +16033,7 @@ var render = function() {
                     "md-input-container",
                     [
                       _c("label", { attrs: { for: "etat" } }, [
-                        _vm._v("Etat réservation")
+                        _vm._v("Etat du livre")
                       ]),
                       _vm._v(" "),
                       _c(
@@ -15894,7 +16049,7 @@ var render = function() {
                           }
                         },
                         [
-                          _c("md-option", { attrs: { value: "ENCOURS" } }, [
+                          _c("md-option", { attrs: { value: "EN_COURS" } }, [
                             _vm._v("En cours")
                           ]),
                           _vm._v(" "),
@@ -15909,66 +16064,21 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c(
-                    "md-input-container",
-                    [
-                      _c("label", [_vm._v("Nom")]),
-                      _vm._v(" "),
-                      _c("md-input", {
-                        model: {
-                          value: _vm.nom,
-                          callback: function($$v) {
-                            _vm.nom = $$v
-                          },
-                          expression: "nom"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "md-input-container",
-                    [
-                      _c("label", [_vm._v("Prénom")]),
-                      _vm._v(" "),
-                      _c("md-input", {
-                        model: {
-                          value: _vm.prenom,
-                          callback: function($$v) {
-                            _vm.prenom = $$v
-                          },
-                          expression: "prenom"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "md-input-container",
-                    [
-                      _c("label", [_vm._v("Numéro exemplaire")]),
-                      _vm._v(" "),
-                      _c("md-input", {
-                        model: {
-                          value: _vm.noExemplaire,
-                          callback: function($$v) {
-                            _vm.noExemplaire = $$v
-                          },
-                          expression: "noExemplaire"
-                        }
-                      })
-                    ],
-                    1
+                    "md-button",
+                    {
+                      staticClass: "md-raised md-primary",
+                      on: { click: _vm.enregistrerReservation }
+                    },
+                    [_vm._v("Enregistrer")]
                   ),
                   _vm._v(" "),
                   _c(
                     "md-button",
                     {
                       staticClass: "md-raised md-primary",
-                      on: { click: _vm.reserverExemplaire }
+                      on: { click: _vm.modifierExemplaire }
                     },
-                    [_vm._v("Réserver")]
+                    [_vm._v("Modifier")]
                   ),
                   _vm._v(" "),
                   _c(

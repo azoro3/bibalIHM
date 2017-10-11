@@ -58,7 +58,7 @@ import axios from 'axios'
        "oeuvre_id": this.selectedItem.id
      })
      console.log
-      axios.post('http://localhost:8080/oeuvre/'+this.selectedItem.id+"/exemplaire", this.test)
+      axios.post('http://localhost:8080/oeuvre/'+this.selectedItem.id+"/exemplaire/", this.test)
       .then(function(response) {
         alert("insertion faite !")
         console.log(response);
