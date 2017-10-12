@@ -40,7 +40,7 @@ import axios from 'axios'
        "prenom":this.surname,
        "mail":this.mail
      })
-     axios.post('http://localhost:8080/user',this.test)
+     axios.post('http://localhost:8080/user/',this.test)
    .then(function (response) {
      alert("insertion faite !")
      console.log(response);

@@ -14506,7 +14506,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
         "prenom": this.surname,
         "mail": this.mail
       });
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/user', this.test).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/user/', this.test).then(function (response) {
         alert("insertion faite !");
         console.log(response);
       }).catch(function (error) {
