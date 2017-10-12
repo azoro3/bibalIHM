@@ -15089,7 +15089,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
       this.test = JSON.stringify({
         "nom": this.titre,
         "synopsis": this.synopsis,
-        "auteur_id": { "id": this.selectedItem.id, "date_de_naiss": null, "nom": null, "pernom": null }
+        "auteur_id": this.selectedItem.id
       });
       console.log(this.test);
       __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/oeuvre/livre/', this.test).then(function (response) {
@@ -15795,7 +15795,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -15807,6 +15807,25 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -15998,6 +16017,64 @@ var render = function() {
                   _c(
                     "md-input-container",
                     [
+                      _c(
+                        "md-select",
+                        {
+                          model: {
+                            value: _vm.selectedExemplaire,
+                            callback: function($$v) {
+                              _vm.selectedExemplaire = $$v
+                            },
+                            expression: "selectedExemplaire"
+                          }
+                        },
+                        _vm._l(_vm.items3, function(item) {
+                          return _c(
+                            "md-option",
+                            { key: item.id, attrs: { value: item } },
+                            [
+                              _vm._v(
+                                "\n              " +
+                                  _vm._s(item.nom) +
+                                  "\n            "
+                              )
+                            ]
+                          )
+                        })
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "md-select",
+                        {
+                          model: {
+                            value: _vm.selectedExemplaire,
+                            callback: function($$v) {
+                              _vm.selectedExemplaire = $$v
+                            },
+                            expression: "selectedExemplaire"
+                          }
+                        },
+                        _vm._l(_vm.items4, function(item) {
+                          return _c(
+                            "md-option",
+                            { key: item.id, attrs: { value: item } },
+                            [
+                              _vm._v(
+                                "\n              " +
+                                  _vm._s(item.nom) +
+                                  "\n            "
+                              )
+                            ]
+                          )
+                        })
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "md-input-container",
+                    [
                       _c("label", [_vm._v("Date de début de réservation")]),
                       _vm._v(" "),
                       _c("md-input", {
@@ -16027,6 +16104,38 @@ var render = function() {
                           expression: "dateF"
                         }
                       })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "md-input-container",
+                    [
+                      _c(
+                        "md-select",
+                        {
+                          model: {
+                            value: _vm.user,
+                            callback: function($$v) {
+                              _vm.user = $$v
+                            },
+                            expression: "user"
+                          }
+                        },
+                        _vm._l(_vm.items3, function(item) {
+                          return _c(
+                            "md-option",
+                            { key: item.id, attrs: { value: item } },
+                            [
+                              _vm._v(
+                                "\n              " +
+                                  _vm._s(item.nom) +
+                                  "\n            "
+                              )
+                            ]
+                          )
+                        })
+                      )
                     ],
                     1
                   ),
@@ -16201,7 +16310,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -16273,10 +16382,10 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
       etat: 'EN_COURS',
       magazines: [],
       livres: [],
-      exemplaires: [],
-      exemplaire: [],
       oeuvre: [],
-      users: []
+      exemplaires: [],
+      users: [],
+      user: []
     };
   },
   methods: {
@@ -16284,14 +16393,13 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
       this.test = JSON.stringify({
         "date_debut": this.dateD,
         "date_fin": this.dateF,
-        "oeuvre_id": this.selectedItem.id,
-        "usager_id": this.user.id,
+        "oeuvre_id": 1 /* this.selectedItem.id*/
+        , "usager_id": this.user.id,
         "reservations": this.etat
       });
       console.log(this.test);
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/oeuvre/' + this.selectedItem.id + "/exemplaire/", this.test).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/oeuvre/' + 1 /*this.selectedItem.id*/ + "/exemplaire/", this.test).then(function (response) {
         alert("insertion faite !");
-        console.log(response);
       }).catch(function (error) {
         alert("erreur: " + error + " veuillez recommencer...");
       });
@@ -16315,9 +16423,10 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
       });
     },
     searchExemplaire() {
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('http://localhost:8080/oeuvre/' + this.oeuvre.id + '/exemplaire/').then(function (response) {
-        self.exemplaires = response.data;
-        console.log(this.exemplaires);
+      self = this;
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('http://localhost:8080/oeuvre/' + this.oeuvre.id + '/exemplaire').then(function (response) {
+        self.exemplaire = response.data._links.collection;
+        console.log('exemplaire: ' + response.data);
       }).catch(function (error) {
         console.log("erreur: " + error + " veuillez recommencer...");
       });
@@ -16452,15 +16561,6 @@ var render = function() {
                     [
                       _c(
                         "md-select",
-                        {
-                          model: {
-                            value: _vm.exemplaire,
-                            callback: function($$v) {
-                              _vm.exemplaire = $$v
-                            },
-                            expression: "exemplaire"
-                          }
-                        },
                         _vm._l(_vm.exemplaires, function(item) {
                           return _c(
                             "md-option",
@@ -16468,7 +16568,7 @@ var render = function() {
                             [
                               _vm._v(
                                 "\n              " +
-                                  _vm._s(item.nom) +
+                                  _vm._s(item.id) +
                                   "\n            "
                               )
                             ]

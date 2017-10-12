@@ -24,14 +24,14 @@
             <md-input v-model="dateF"></md-input>
           </md-input-container>
           <md-input-container>
-            <md-select v-model="exemplaire">
+            <md-select>
               <md-option v-for="item in exemplaires" :key="item.id" :value="item">
-                {{ item.nom }}
+                {{ item.id }}
               </md-option>
             </md-select>
-  <md-button v-on:click="searchExemplaire" class="md-raised md-primary">
-    <i class="material-icons">search</i>
-  </md-button>
+            <md-button v-on:click="searchExemplaire" class="md-raised md-primary">
+              <i class="material-icons">search</i>
+            </md-button>
           </md-input-container>
           <md-input-container>
             <md-select v-model="user">
@@ -58,10 +58,10 @@ export default {
       etat: 'EN_COURS',
       magazines: [],
       livres: [],
+      oeuvre: [],
       exemplaires: [],
-      exemplaire: [],
-      oeuvre :[],
-      users: []
+      users: [],
+      user: [],
     }
   },
   methods: {
@@ -69,15 +69,14 @@ export default {
       this.test = JSON.stringify({
         "date_debut": this.dateD,
         "date_fin": this.dateF,
-        "oeuvre_id": this.selectedItem.id,
+        "oeuvre_id": 1 /* this.selectedItem.id*/,
         "usager_id": this.user.id,
         "reservations": this.etat
       })
       console.log(this.test)
-      axios.post('http://localhost:8080/oeuvre/' + this.selectedItem.id + "/exemplaire/", this.test)
+      axios.post('http://localhost:8080/oeuvre/' + 1/*this.selectedItem.id*/ + "/exemplaire/", this.test)
         .then(function(response) {
           alert("insertion faite !")
-          console.log(response);
         })
         .catch(function(error) {
           alert("erreur: " + error + " veuillez recommencer...")
@@ -105,15 +104,17 @@ export default {
           console.log("erreur: " + error + " veuillez recommencer...")
         })
     },
-    searchExemplaire(){
-    axios.get('http://localhost:8080/oeuvre/' + this.oeuvre.id+'/exemplaire/')
-      .then(function(response) {
-        self.exemplaires = response.data
-        console.log(this.exemplaires)
-      })
-      .catch(function(error) {
-        console.log("erreur: " + error + " veuillez recommencer...")
-      })
+    searchExemplaire() {
+      self = this;
+      axios.get('http://localhost:8080/oeuvre/'+this.oeuvre.id+'/exemplaire')
+        .then(function(response) {
+          self.exemplaire = response.data._links.collection
+          console.log('exemplaire: '+response.data)
+        })
+        .catch(function(error) {
+          console.log("erreur: " + error + " veuillez recommencer...")
+        })
+
     }
   },
   mounted() {

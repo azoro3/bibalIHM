@@ -58,7 +58,7 @@ import axios from 'axios'
         this.test= JSON.stringify({
           "nom":this.titre,
           "synopsis":this.synopsis,
-          "auteur_id":{"id": this.selectedItem.id,"date_de_naiss":null,"nom":null,"pernom":null}
+          "auteur_id": this.selectedItem.id,
         })
         console.log(this.test)
         axios.post('http://localhost:8080/oeuvre/livre/',this.test)

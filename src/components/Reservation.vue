@@ -16,12 +16,31 @@
             </md-select>
           </md-input-container>
           <md-input-container>
+            <md-select v-model="selectedExemplaire">
+              <md-option v-for="item in items3" :key="item.id" :value="item">
+                {{ item.nom }}
+              </md-option>
+            </md-select>
+            <md-select v-model="selectedExemplaire">
+              <md-option v-for="item in items4" :key="item.id" :value="item">
+                {{ item.nom }}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container>
             <label>Date de début de réservation</label>
             <md-input v-model="dateD"></md-input>
           </md-input-container>
           <md-input-container>
             <label>Date de fin de réservation</label>
             <md-input v-model="dateF"></md-input>
+          </md-input-container>
+          <md-input-container>
+            <md-select v-model="user">
+              <md-option v-for="item in items3" :key="item.id" :value="item">
+                {{ item.nom }}
+              </md-option>
+            </md-select>
           </md-input-container>
           <md-input-container>
             <md-select v-model="user">
