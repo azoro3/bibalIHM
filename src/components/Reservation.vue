@@ -4,28 +4,23 @@
       <md-layout md-align="center" md-gutter>
         <md-layout md-flex="35">
           <md-input-container>
+            <!-- livre + oeuvre -->
             <md-select v-model="selectedItem">
               <md-option v-for="item in items1" :key="item.id" :value="item">
                 {{ item.nom }}
               </md-option>
             </md-select>
-            <md-select v-model="selectedItem">
-              <md-option v-for="item in items2" :key="item.id" :value="item">
-                {{ item.nom }}
-              </md-option>
-            </md-select>
+            <!-- zxzmplaire -->
           </md-input-container>
           <md-input-container>
             <md-select v-model="selectedExemplaire">
               <md-option v-for="item in items3" :key="item.id" :value="item">
-                {{ item.nom }}
+                {{ item.id }}
               </md-option>
             </md-select>
-            <md-select v-model="selectedExemplaire">
-              <md-option v-for="item in items4" :key="item.id" :value="item">
-                {{ item.nom }}
-              </md-option>
-            </md-select>
+
+            <md-button v-on:click="searchExemplaire" class="md-raised md-primary"><i class="material-icons">search</i></md-button>
+
           </md-input-container>
           <md-input-container>
             <label>Date de début de réservation</label>
@@ -36,15 +31,8 @@
             <md-input v-model="dateF"></md-input>
           </md-input-container>
           <md-input-container>
-            <md-select v-model="user">
-              <md-option v-for="item in items3" :key="item.id" :value="item">
-                {{ item.nom }}
-              </md-option>
-            </md-select>
-          </md-input-container>
-          <md-input-container>
-            <md-select v-model="user">
-              <md-option v-for="item in items3" :key="item.id" :value="item">
+            <md-select v-model="userValue">
+              <md-option v-for="item in users" :key="item.id" :value="item">
                 {{ item.nom }}
               </md-option>
             </md-select>
@@ -69,7 +57,7 @@ export default {
       items3: [],
       selectedItem: [],
       userValue: [],
-      user: []
+      users: []
     }
   },
   methods: {
@@ -77,12 +65,11 @@ export default {
       this.test = JSON.stringify({
         "date_debut": this.dateD,
         "date_fin": this.dateF,
-        "oeuvre_id": this.selectedItem.id,
-        "usager_id": this.user.id,
+        "oeuvre_id": this.selectedItem.idOeuvre,
+        "usager_id": this.userValue.id,
         "reservations": this.etat
       })
-      console.log(this.test)
-      axios.post('http://localhost:8080/oeuvre/' + this.selectedItem.id + "/exemplaire/", this.test)
+      axios.post('http://localhost:8080/oeuvre/' + this.selectedItem.idOeuvre + "/exemplaire/", this.test)
         .then(function(response) {
           alert("insertion faite !")
           console.log(response);
@@ -99,30 +86,27 @@ export default {
       self = this;
       axios.get('http://localhost:8080/oeuvre/')
         .then(function(response) {
-          self.items1 = response.data._embedded.magazines
-          self.items2 = response.data._embedded.livres
+          self.items1 = response.data
         })
         .catch(function(error) {
           console.log("erreur: " + error + " veuillez recommencer...")
         })
-      self = this;
       axios.get('http://localhost:8080/user/')
         .then(function(response) {
-          self.items3 = response.data._embedded.usagers
-        })
-        .catch(function(error) {
-          console.log("erreur: " + error + " veuillez recommencer...")
-        })
-
-    },
-    fetchFunction() {
-      self = this
-      axios.get('http://localhost:8080/user/')
-        .then(function(response) {
+          console.log(response)
           self.users = response.data._embedded.usagers
         }).catch(function(error) {
           console.log(error)
         })
+    },
+    searchExemplaire() {
+      self = this
+      axios.get('http://localhost:8080/oeuvre/' + this.selectedItem.idOeuvre + '/exemplaire/').then(function(response) {
+        self.items3 = response.data
+      }).catch(function(error) {
+        console.log(error)
+        alert("Aucun exemplaire disponible")
+      })
     }
   },
   mounted() {
@@ -134,3 +118,4 @@ export default {
 <style>
 
 </style>
+

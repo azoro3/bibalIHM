@@ -14320,7 +14320,7 @@ var render = function() {
                       staticClass: "md-raised md-primary",
                       attrs: { tag: "md-button", to: "Reservation" }
                     },
-                    [_vm._v("Réserver exemplaire")]
+                    [_vm._v("Emprunter exemplaire")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -14329,7 +14329,7 @@ var render = function() {
                       staticClass: "md-raised md-primary",
                       attrs: { tag: "md-button", to: "Emprunt" }
                     },
-                    [_vm._v("Emprunter exemplaire")]
+                    [_vm._v("Réserver exemplaire")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -15017,7 +15017,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -15029,6 +15029,10 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
 //
 //
 //
@@ -15086,13 +15090,14 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
   },
   methods: {
     registerBook() {
+      self = this;
       this.test = JSON.stringify({
+        "id_oeuvre": null,
         "nom": this.titre,
         "synopsis": this.synopsis,
-        "auteur_id": this.selectedItem.id
+        "auteur_id_auteur": this.selectedItem.id_auteur
       });
-      console.log(this.test);
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/oeuvre/livre/', this.test).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/oeuvre/livre/' + this.selectedItem.id, this.test).then(function (response) {
         alert("insertion faite !");
       }).catch(function (error) {
         alert("erreur, veuillez recommencer...");
@@ -15259,7 +15264,11 @@ var render = function() {
                       staticClass: "md-raised md-primary",
                       attrs: { tag: "md-button", to: "Home" }
                     },
-                    [_vm._v("Home")]
+                    [
+                      _c("i", { staticClass: "material-icons" }, [
+                        _vm._v("home")
+                      ])
+                    ]
                   )
                 ],
                 1
@@ -15309,7 +15318,11 @@ var render = function() {
                       staticClass: "md-raised md-primary",
                       attrs: { tag: "md-button", to: "Home" }
                     },
-                    [_vm._v("Home")]
+                    [
+                      _c("i", { staticClass: "material-icons" }, [
+                        _vm._v("home")
+                      ])
+                    ]
                   )
                 ],
                 1
@@ -15423,7 +15436,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -15435,11 +15448,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-//
-//
-//
-//
-//
 //
 //
 //
@@ -15489,13 +15497,14 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
   },
   methods: {
     registerExemplaire() {
+      console.log(this.selectedItem);
       this.test = JSON.stringify({
         "date_achat": this.dateA,
         "etat": this.etat,
-        "oeuvre_id": this.selectedItem.id
+        "oeuvre_id": this.selectedItem.idOeuvre
       });
       console.log;
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/oeuvre/' + this.selectedItem.id + "/exemplaire/", this.test).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/oeuvre/' + this.selectedItem.idOeuvre + "/exemplaire/", this.test).then(function (response) {
         alert("insertion faite !");
         console.log(response);
       }).catch(function (error) {
@@ -15509,11 +15518,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
     affichage() {
       self = this;
       __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('http://localhost:8080/oeuvre/').then(function (response) {
-        self.items1 = response.data._embedded.magazines;
-        self.items2 = response.data._embedded.livres;
-        //self.items+="\n" +response.data._embedded.livres
-        console.log(self.items1);
-        console.log(self.items2);
+        self.items1 = response.data;
+        console.log(response);
       }).catch(function (error) {
         console.log("erreur: " + error + " veuillez recommencer...");
       });
@@ -15566,7 +15572,7 @@ var render = function() {
                         _vm._l(_vm.items1, function(item) {
                           return _c(
                             "md-option",
-                            { key: item.id, attrs: { value: item } },
+                            { key: item.idOeuvre, attrs: { value: item } },
                             [
                               _vm._v(
                                 "\n              " +
@@ -15574,26 +15580,6 @@ var render = function() {
                                   "\n            "
                               )
                             ]
-                          )
-                        })
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "md-select",
-                        {
-                          model: {
-                            value: _vm.selectedItem,
-                            callback: function($$v) {
-                              _vm.selectedItem = $$v
-                            },
-                            expression: "selectedItem"
-                          }
-                        },
-                        _vm._l(_vm.items2, function(item) {
-                          return _c(
-                            "md-option",
-                            { key: item.id, attrs: { value: item } },
-                            [_vm._v("\n    " + _vm._s(item.nom) + "\n  ")]
                           )
                         })
                       )
@@ -15663,16 +15649,7 @@ var render = function() {
                       staticClass: "md-raised md-primary",
                       on: { click: _vm.registerExemplaire }
                     },
-                    [_vm._v("Enregistrer")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "md-button",
-                    {
-                      staticClass: "md-raised md-primary",
-                      on: { click: _vm.modifierExemplaire }
-                    },
-                    [_vm._v("Modifier")]
+                    [_vm._v("\n          enregistrer exemplaire\n        ")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -15681,7 +15658,11 @@ var render = function() {
                       staticClass: "md-raised md-primary",
                       attrs: { tag: "md-button", to: "Home" }
                     },
-                    [_vm._v("Home")]
+                    [
+                      _c("i", { staticClass: "material-icons" }, [
+                        _vm._v("home")
+                      ])
+                    ]
                   )
                 ],
                 1
@@ -15795,7 +15776,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -15807,18 +15788,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -15878,7 +15847,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
       items3: [],
       selectedItem: [],
       userValue: [],
-      user: []
+      users: []
     };
   },
   methods: {
@@ -15886,12 +15855,11 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
       this.test = JSON.stringify({
         "date_debut": this.dateD,
         "date_fin": this.dateF,
-        "oeuvre_id": this.selectedItem.id,
-        "usager_id": this.user.id,
+        "oeuvre_id": this.selectedItem.idOeuvre,
+        "usager_id": this.userValue.id,
         "reservations": this.etat
       });
-      console.log(this.test);
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/oeuvre/' + this.selectedItem.id + "/exemplaire/", this.test).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/oeuvre/' + this.selectedItem.idOeuvre + "/exemplaire/", this.test).then(function (response) {
         alert("insertion faite !");
         console.log(response);
       }).catch(function (error) {
@@ -15905,24 +15873,24 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
     affichage() {
       self = this;
       __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('http://localhost:8080/oeuvre/').then(function (response) {
-        self.items1 = response.data._embedded.magazines;
-        self.items2 = response.data._embedded.livres;
+        self.items1 = response.data;
       }).catch(function (error) {
         console.log("erreur: " + error + " veuillez recommencer...");
       });
-      self = this;
       __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('http://localhost:8080/user/').then(function (response) {
-        self.items3 = response.data._embedded.usagers;
-      }).catch(function (error) {
-        console.log("erreur: " + error + " veuillez recommencer...");
-      });
-    },
-    fetchFunction() {
-      self = this;
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('http://localhost:8080/user/').then(function (response) {
+        console.log(response);
         self.users = response.data._embedded.usagers;
       }).catch(function (error) {
         console.log(error);
+      });
+    },
+    searchExemplaire() {
+      self = this;
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('http://localhost:8080/oeuvre/' + this.selectedItem.idOeuvre + '/exemplaire/').then(function (response) {
+        self.items3 = response.data;
+      }).catch(function (error) {
+        console.log(error);
+        alert("Aucun exemplaire disponible");
       });
     }
   },
@@ -15983,32 +15951,6 @@ var render = function() {
                             ]
                           )
                         })
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "md-select",
-                        {
-                          model: {
-                            value: _vm.selectedItem,
-                            callback: function($$v) {
-                              _vm.selectedItem = $$v
-                            },
-                            expression: "selectedItem"
-                          }
-                        },
-                        _vm._l(_vm.items2, function(item) {
-                          return _c(
-                            "md-option",
-                            { key: item.id, attrs: { value: item } },
-                            [
-                              _vm._v(
-                                "\n              " +
-                                  _vm._s(item.nom) +
-                                  "\n            "
-                              )
-                            ]
-                          )
-                        })
                       )
                     ],
                     1
@@ -16035,7 +15977,7 @@ var render = function() {
                             [
                               _vm._v(
                                 "\n              " +
-                                  _vm._s(item.nom) +
+                                  _vm._s(item.id) +
                                   "\n            "
                               )
                             ]
@@ -16044,29 +15986,16 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c(
-                        "md-select",
+                        "md-button",
                         {
-                          model: {
-                            value: _vm.selectedExemplaire,
-                            callback: function($$v) {
-                              _vm.selectedExemplaire = $$v
-                            },
-                            expression: "selectedExemplaire"
-                          }
+                          staticClass: "md-raised md-primary",
+                          on: { click: _vm.searchExemplaire }
                         },
-                        _vm._l(_vm.items4, function(item) {
-                          return _c(
-                            "md-option",
-                            { key: item.id, attrs: { value: item } },
-                            [
-                              _vm._v(
-                                "\n              " +
-                                  _vm._s(item.nom) +
-                                  "\n            "
-                              )
-                            ]
-                          )
-                        })
+                        [
+                          _c("i", { staticClass: "material-icons" }, [
+                            _vm._v("search")
+                          ])
+                        ]
                       )
                     ],
                     1
@@ -16115,46 +16044,14 @@ var render = function() {
                         "md-select",
                         {
                           model: {
-                            value: _vm.user,
+                            value: _vm.userValue,
                             callback: function($$v) {
-                              _vm.user = $$v
+                              _vm.userValue = $$v
                             },
-                            expression: "user"
+                            expression: "userValue"
                           }
                         },
-                        _vm._l(_vm.items3, function(item) {
-                          return _c(
-                            "md-option",
-                            { key: item.id, attrs: { value: item } },
-                            [
-                              _vm._v(
-                                "\n              " +
-                                  _vm._s(item.nom) +
-                                  "\n            "
-                              )
-                            ]
-                          )
-                        })
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "md-input-container",
-                    [
-                      _c(
-                        "md-select",
-                        {
-                          model: {
-                            value: _vm.user,
-                            callback: function($$v) {
-                              _vm.user = $$v
-                            },
-                            expression: "user"
-                          }
-                        },
-                        _vm._l(_vm.items3, function(item) {
+                        _vm._l(_vm.users, function(item) {
                           return _c(
                             "md-option",
                             { key: item.id, attrs: { value: item } },
@@ -16310,7 +16207,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -16357,35 +16254,18 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   data() {
     return {
-      dateD: '',
-      dateF: '',
+      dateA: '',
       etat: 'EN_COURS',
-      magazines: [],
-      livres: [],
-      oeuvre: [],
-      exemplaires: [],
-      users: [],
-      user: []
+      oeuvres: [],
+      items3: [],
+      selectedItem: [],
+      userValue: [],
+      users: []
     };
   },
   methods: {
@@ -16393,13 +16273,13 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
       this.test = JSON.stringify({
         "date_debut": this.dateD,
         "date_fin": this.dateF,
-        "oeuvre_id": 1 /* this.selectedItem.id*/
-        , "usager_id": this.user.id,
+        "oeuvre_id": this.selectedItem.idOeuvre,
+        "usager_id": this.userValue.id,
         "reservations": this.etat
       });
-      console.log(this.test);
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/oeuvre/' + 1 /*this.selectedItem.id*/ + "/exemplaire/", this.test).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/oeuvre/' + this.selectedItem.idOeuvre + "/exemplaire/", this.test).then(function (response) {
         alert("insertion faite !");
+        console.log(response);
       }).catch(function (error) {
         alert("erreur: " + error + " veuillez recommencer...");
       });
@@ -16411,24 +16291,25 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
     affichage() {
       self = this;
       __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('http://localhost:8080/oeuvre/').then(function (response) {
-        self.magazines = response.data._embedded.magazines;
-        self.livres = response.data._embedded.livres;
+        self.oeuvres = response.data;
       }).catch(function (error) {
         console.log("erreur: " + error + " veuillez recommencer...");
       });
       __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('http://localhost:8080/user/').then(function (response) {
+        console.log(response);
         self.users = response.data._embedded.usagers;
       }).catch(function (error) {
-        console.log("erreur: " + error + " veuillez recommencer...");
+        console.log(error);
       });
     },
     searchExemplaire() {
       self = this;
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('http://localhost:8080/oeuvre/' + this.oeuvre.id + '/exemplaire').then(function (response) {
-        self.exemplaire = response.data._links.collection;
-        console.log('exemplaire: ' + response.data);
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('http://localhost:8080/oeuvre/' + this.selectedItem.id + '/exemplaire/').then(function (response) {
+        console.log(response.data["0"].id);
+        self.items3 = response.data;
       }).catch(function (error) {
-        console.log("erreur: " + error + " veuillez recommencer...");
+        console.log(error);
+        alert("Aucun exemplaire disponible");
       });
     }
   },
@@ -16469,40 +16350,14 @@ var render = function() {
                         "md-select",
                         {
                           model: {
-                            value: _vm.oeuvre,
+                            value: _vm.selectedItem,
                             callback: function($$v) {
-                              _vm.oeuvre = $$v
+                              _vm.selectedItem = $$v
                             },
-                            expression: "oeuvre"
+                            expression: "selectedItem"
                           }
                         },
-                        _vm._l(_vm.magazines, function(item) {
-                          return _c(
-                            "md-option",
-                            { key: item.id, attrs: { value: item } },
-                            [
-                              _vm._v(
-                                "\n              " +
-                                  _vm._s(item.nom) +
-                                  "\n            "
-                              )
-                            ]
-                          )
-                        })
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "md-select",
-                        {
-                          model: {
-                            value: _vm.oeuvre,
-                            callback: function($$v) {
-                              _vm.oeuvre = $$v
-                            },
-                            expression: "oeuvre"
-                          }
-                        },
-                        _vm._l(_vm.livres, function(item) {
+                        _vm._l(_vm.oeuvres, function(item) {
                           return _c(
                             "md-option",
                             { key: item.id, attrs: { value: item } },
@@ -16561,49 +16416,13 @@ var render = function() {
                     [
                       _c(
                         "md-select",
-                        _vm._l(_vm.exemplaires, function(item) {
-                          return _c(
-                            "md-option",
-                            { key: item.id, attrs: { value: item } },
-                            [
-                              _vm._v(
-                                "\n              " +
-                                  _vm._s(item.id) +
-                                  "\n            "
-                              )
-                            ]
-                          )
-                        })
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "md-button",
-                        {
-                          staticClass: "md-raised md-primary",
-                          on: { click: _vm.searchExemplaire }
-                        },
-                        [
-                          _c("i", { staticClass: "material-icons" }, [
-                            _vm._v("search")
-                          ])
-                        ]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "md-input-container",
-                    [
-                      _c(
-                        "md-select",
                         {
                           model: {
-                            value: _vm.user,
+                            value: _vm.userValue,
                             callback: function($$v) {
-                              _vm.user = $$v
+                              _vm.userValue = $$v
                             },
-                            expression: "user"
+                            expression: "userValue"
                           }
                         },
                         _vm._l(_vm.users, function(item) {
@@ -16630,16 +16449,7 @@ var render = function() {
                       staticClass: "md-raised md-primary",
                       on: { click: _vm.enregistrerReservation }
                     },
-                    [_vm._v("Enregistrer")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "md-button",
-                    {
-                      staticClass: "md-raised md-primary",
-                      on: { click: _vm.modifierExemplaire }
-                    },
-                    [_vm._v("Modifier")]
+                    [_vm._v("réserver")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -16648,7 +16458,11 @@ var render = function() {
                       staticClass: "md-raised md-primary",
                       attrs: { tag: "md-button", to: "Home" }
                     },
-                    [_vm._v("Home")]
+                    [
+                      _c("i", { staticClass: "material-icons" }, [
+                        _vm._v("home")
+                      ])
+                    ]
                   )
                 ],
                 1

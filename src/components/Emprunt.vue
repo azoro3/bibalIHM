@@ -4,17 +4,13 @@
       <md-layout md-align="center" md-gutter>
         <md-layout md-flex="35">
           <md-input-container>
-            <md-select v-model="oeuvre">
-              <md-option v-for="item in magazines" :key="item.id" :value="item">
+            <!-- livre + oeuvre -->
+            <md-select v-model="selectedItem">
+              <md-option v-for="item in oeuvres" :key="item.id" :value="item">
                 {{ item.nom }}
               </md-option>
             </md-select>
-            <md-select v-model="oeuvre">
-              <md-option v-for="item in livres" :key="item.id" :value="item">
-                {{ item.nom }}
-              </md-option>
-            </md-select>
-          </md-input-container>
+          </md-input-container>       
           <md-input-container>
             <label>Date de début de réservation</label>
             <md-input v-model="dateD"></md-input>
@@ -24,25 +20,14 @@
             <md-input v-model="dateF"></md-input>
           </md-input-container>
           <md-input-container>
-            <md-select>
-              <md-option v-for="item in exemplaires" :key="item.id" :value="item">
-                {{ item.id }}
-              </md-option>
-            </md-select>
-            <md-button v-on:click="searchExemplaire" class="md-raised md-primary">
-              <i class="material-icons">search</i>
-            </md-button>
-          </md-input-container>
-          <md-input-container>
-            <md-select v-model="user">
+            <md-select v-model="userValue">
               <md-option v-for="item in users" :key="item.id" :value="item">
                 {{ item.nom }}
               </md-option>
             </md-select>
           </md-input-container>
-          <md-button v-on:click="enregistrerReservation" class="md-raised md-primary">Enregistrer</md-button>
-          <md-button v-on:click="modifierExemplaire" class="md-raised md-primary">Modifier</md-button>
-          <router-link tag="md-button" to="Home" class="md-raised md-primary">Home</router-link>
+          <md-button v-on:click="enregistrerReservation" class="md-raised md-primary">réserver</md-button>
+          <router-link tag="md-button" to="Home" class="md-raised md-primary"><i class="material-icons">home</i></router-link>
         </md-layout>
       </md-layout>
     </md-whiteframe>
@@ -53,15 +38,13 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      dateD: '',
-      dateF: '',
+      dateA: '',
       etat: 'EN_COURS',
-      magazines: [],
-      livres: [],
-      oeuvre: [],
-      exemplaires: [],
-      users: [],
-      user: [],
+      oeuvres: [],
+      items3: [],
+      selectedItem: [],
+      userValue: [],
+      users: []
     }
   },
   methods: {
@@ -69,14 +52,14 @@ export default {
       this.test = JSON.stringify({
         "date_debut": this.dateD,
         "date_fin": this.dateF,
-        "oeuvre_id": 1 /* this.selectedItem.id*/,
-        "usager_id": this.user.id,
+        "oeuvre_id": this.selectedItem.idOeuvre,
+        "usager_id": this.userValue.id,
         "reservations": this.etat
       })
-      console.log(this.test)
-      axios.post('http://localhost:8080/oeuvre/' + 1/*this.selectedItem.id*/ + "/exemplaire/", this.test)
+      axios.post('http://localhost:8080/oeuvre/' + this.selectedItem.idOeuvre + "/exemplaire/", this.test)
         .then(function(response) {
           alert("insertion faite !")
+          console.log(response);
         })
         .catch(function(error) {
           alert("erreur: " + error + " veuillez recommencer...")
@@ -90,31 +73,28 @@ export default {
       self = this;
       axios.get('http://localhost:8080/oeuvre/')
         .then(function(response) {
-          self.magazines = response.data._embedded.magazines
-          self.livres = response.data._embedded.livres
+          self.oeuvres = response.data
         })
         .catch(function(error) {
           console.log("erreur: " + error + " veuillez recommencer...")
         })
       axios.get('http://localhost:8080/user/')
         .then(function(response) {
+          console.log(response)
           self.users = response.data._embedded.usagers
-        })
-        .catch(function(error) {
-          console.log("erreur: " + error + " veuillez recommencer...")
+        }).catch(function(error) {
+          console.log(error)
         })
     },
     searchExemplaire() {
-      self = this;
-      axios.get('http://localhost:8080/oeuvre/'+this.oeuvre.id+'/exemplaire')
-        .then(function(response) {
-          self.exemplaire = response.data._links.collection
-          console.log('exemplaire: '+response.data)
-        })
-        .catch(function(error) {
-          console.log("erreur: " + error + " veuillez recommencer...")
-        })
-
+      self = this
+      axios.get('http://localhost:8080/oeuvre/' + this.selectedItem.id + '/exemplaire/').then(function(response) {
+        console.log(response.data["0"].id)
+        self.items3 = response.data
+      }).catch(function(error) {
+        console.log(error)
+        alert("Aucun exemplaire disponible")
+      })
     }
   },
   mounted() {
@@ -126,3 +106,4 @@ export default {
 <style>
 
 </style>
+

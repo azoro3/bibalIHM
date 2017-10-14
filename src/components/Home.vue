@@ -11,8 +11,8 @@
         </md-layout>
         <md-layout>
           <router-link tag="md-button" to="Exemplaire" class="md-raised md-primary">Gestion exemplaire</router-link>
-          <router-link tag="md-button" to="Reservation" class="md-raised md-primary">Réserver exemplaire</router-link>
-          <router-link tag="md-button" to="Emprunt" class="md-raised md-primary">Emprunter exemplaire</router-link>
+          <router-link tag="md-button" to="Reservation" class="md-raised md-primary">Emprunter exemplaire</router-link>
+          <router-link tag="md-button" to="Emprunt" class="md-raised md-primary">Réserver exemplaire</router-link>
           <router-link tag="md-button" to="Rendu" class="md-raised md-primary">Rendre exemplaire</router-link>
         </md-layout>
         </md-layout>
