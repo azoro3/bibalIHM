@@ -55,21 +55,25 @@ export default {
       items1: [],
       items2: [],
       items3: [],
-      selectedItem: [],
+      selectedExemplaire: [],
       userValue: [],
       users: []
     }
   },
   methods: {
     enregistrerReservation() {
+      self=this
+      console.log(this.selectedExemplaire.id)
       this.test = JSON.stringify({
+        "id": null,
         "date_debut": this.dateD,
         "date_fin": this.dateF,
-        "oeuvre_id": this.selectedItem.idOeuvre,
+        "etat": this.etat,
+        "exemplaire_id": this.selectedExemplaire.id,
         "usager_id": this.userValue.id,
-        "reservations": this.etat
       })
-      axios.post('http://localhost:8080/oeuvre/' + this.selectedItem.idOeuvre + "/exemplaire/", this.test)
+      console.log(this.test)
+      axios.post('http://localhost:8080/gestion/emprunt/' + this.selectedExemplaire.id+'/'+this.userValue.id, this.test)
         .then(function(response) {
           alert("insertion faite !")
           console.log(response);

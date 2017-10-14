@@ -15776,7 +15776,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -15845,21 +15845,25 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
       items1: [],
       items2: [],
       items3: [],
-      selectedItem: [],
+      selectedExemplaire: [],
       userValue: [],
       users: []
     };
   },
   methods: {
     enregistrerReservation() {
+      self = this;
+      console.log(this.selectedExemplaire.id);
       this.test = JSON.stringify({
+        "id": null,
         "date_debut": this.dateD,
         "date_fin": this.dateF,
-        "oeuvre_id": this.selectedItem.idOeuvre,
-        "usager_id": this.userValue.id,
-        "reservations": this.etat
+        "etat": this.etat,
+        "exemplaire_id": this.selectedExemplaire.id,
+        "usager_id": this.userValue.id
       });
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/oeuvre/' + this.selectedItem.idOeuvre + "/exemplaire/", this.test).then(function (response) {
+      console.log(this.test);
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/gestion/emprunt/' + this.selectedExemplaire.id + '/' + this.userValue.id, this.test).then(function (response) {
         alert("insertion faite !");
         console.log(response);
       }).catch(function (error) {
@@ -16277,7 +16281,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
         "usager_id": this.userValue.id,
         "reservations": this.etat
       });
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/oeuvre/' + this.selectedItem.idOeuvre + "/exemplaire/", this.test).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://localhost:8080/gestion/reservations/' + this.selectedItem.idOeuvre + "/" + this.userValue.id, this.test).then(function (response) {
         alert("insertion faite !");
         console.log(response);
       }).catch(function (error) {
@@ -16576,7 +16580,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -16588,6 +16592,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
 //
 //
 //
@@ -16635,14 +16640,15 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
     affichage() {
       console.log(this.items);
       self = this;
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('http://localhost:8080/user').then(function (response) {
-        self.items = response.data._embedded.usagers;
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('http://localhost:8080/gestion/emprunts/').then(function (response) {
+        console.log(response.data._embedded.emprunts);
+        self.items = response.data._embedded.emprunts;
       }).catch(function (error) {
         console.log("erreur: " + error + " veuillez recommencer...");
       });
     },
     delUser(id) {
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete('http://localhost:8080/user/' + id).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete('http://localhost:8080/gestion/emprunt/' + id).then(function (response) {
         console.log("ok");
         window.location.reload(true);
       }).catch(function (error) {});
@@ -16687,11 +16693,13 @@ var render = function() {
                           _c(
                             "md-table-row",
                             [
-                              _c("md-table-head", [_vm._v("Nom")]),
+                              _c("md-table-head", [_vm._v("Date de début")]),
                               _vm._v(" "),
-                              _c("md-table-head", [_vm._v("Prénom")]),
+                              _c("md-table-head", [_vm._v("Date de fin")]),
                               _vm._v(" "),
-                              _c("md-table-head", [_vm._v("Mail")])
+                              _c("md-table-head", [_vm._v("id exemplaire")]),
+                              _vm._v(" "),
+                              _c("md-table-head", [_vm._v("etat de l'emprunt")])
                             ],
                             1
                           )
@@ -16706,13 +16714,17 @@ var render = function() {
                             "md-table-row",
                             { key: _vm.id },
                             [
-                              _c("md-table-cell", [_vm._v(_vm._s(item.nom))]),
-                              _vm._v(" "),
                               _c("md-table-cell", [
-                                _vm._v(_vm._s(item.prenom))
+                                _vm._v(_vm._s(item.dateDebut))
                               ]),
                               _vm._v(" "),
-                              _c("md-table-cell", [_vm._v(_vm._s(item.mail))]),
+                              _c("md-table-cell", [
+                                _vm._v(_vm._s(item.dateFin))
+                              ]),
+                              _vm._v(" "),
+                              _c("md-table-cell", [_vm._v(_vm._s(item.id))]),
+                              _vm._v(" "),
+                              _c("md-table-cell", [_vm._v(_vm._s(item.etat))]),
                               _vm._v(" "),
                               _c(
                                 "md-table-cell",

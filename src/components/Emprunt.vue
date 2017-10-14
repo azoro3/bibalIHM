@@ -56,7 +56,7 @@ export default {
         "usager_id": this.userValue.id,
         "reservations": this.etat
       })
-      axios.post('http://localhost:8080/oeuvre/' + this.selectedItem.idOeuvre + "/exemplaire/", this.test)
+      axios.post('http://localhost:8080/gestion/reservations/' + this.selectedItem.idOeuvre + "/"+this.userValue.id, this.test)
         .then(function(response) {
           alert("insertion faite !")
           console.log(response);
